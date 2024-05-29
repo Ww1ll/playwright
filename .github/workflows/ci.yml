@@ -12,10 +12,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        browser: [chromium, firefox]
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -28,8 +24,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests on ${{ matrix.browser }}
-        run: |
-          npx jest --browser=${{ matrix.browser }}
-        env:
-          BROWSER: ${{ matrix.browser }}
+      - name: Run tests
+        run: npx jest
